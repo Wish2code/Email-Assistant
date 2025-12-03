@@ -16,7 +16,6 @@ class EmailState(TypedDict):
     messages: List[Dict[str, Any]]
 
 # --- LLM Initialization ---
-# Retrieve API key securely from Streamlit secrets
 load_dotenv()
 
 api_key = os.getenv("GOOGLE_API_KEY") 
@@ -26,15 +25,13 @@ os.environ["GOOGLE_API_KEY"] = api_key
 
 model = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0)
 
-# --- Node Functions (Copy the functions read_email, classify_email, handle_spam, draft_response, notify_mr_ngaatendwe, route_email here) ---
+
 def read_email(state: EmailState):
-    # ... (paste function body here) ...
     email = state["email"]
     st.write(f"Alfred is processing an email from {email['sender']} with subject: {email['subject']}")
     return {}
 
 def classify_email(state: EmailState):
-    # ... (paste function body here) ...
     email = state["email"]
     prompt = f"""
     As Alfred the butler, analyze this email and determine if it is spam or legitimate.
@@ -81,13 +78,12 @@ def classify_email(state: EmailState):
     }
 
 def handle_spam(state: EmailState):
-    # ... (paste function body here) ...
+    
     st.warning(f"Alfred has marked the email as spam. Reason: {state['spam_reason']}")
     st.info("The email has been moved to the spam folder.")
     return {}
 
 def draft_response(state: EmailState):
-    # ... (paste function body here) ...
     email = state["email"]
     category = state["email_category"] or "general"
     prompt = f"""
@@ -114,7 +110,6 @@ def draft_response(state: EmailState):
     }
 
 def notify_mr_ngaatendwe(state: EmailState):
-    # ... (paste function body here) ...
     email = state["email"]
     st.subheader(f"Email from {email['sender']}")
     st.write(f"Subject: {email['subject']}")
@@ -128,13 +123,12 @@ def notify_mr_ngaatendwe(state: EmailState):
     return {}
 
 def route_email(state: EmailState) -> str:
-    # ... (paste function body here) ...
     if state["is_spam"]:
         return "spam"
     else:
         return "legitimate"
 
-# --- LangGraph Setup (Copy the graph setup here) ---
+# --- LangGraph Setup---
 email_graph = StateGraph(EmailState)
 email_graph.add_node("read_email", read_email)
 email_graph.add_node("classify_email", classify_email)
@@ -179,7 +173,6 @@ if st.button("Process Email"):
         "messages": []
     }
     
-    # Invoke the graph
     with st.spinner("Alfred is processing your email..."):
         final_state = compiled_graph.invoke(initial_state)
     
