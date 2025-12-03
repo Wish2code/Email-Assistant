@@ -1,6 +1,6 @@
 # Ngaatendwe's Email Assistant (Alfred)
 
-A small Streamlit app that uses **LangGraph**, **LangChain**, and **Google Gemini** to process incoming emails like a butler named Alfred. The app:
+An agent that uses **LangGraph**, **LangChain**, and **Google Gemini** to process incoming emails. The app:
 
 - Reads a user-provided email (sender, subject, body).
 - Uses an LLM to classify the email as **spam** or **legitimate**.
