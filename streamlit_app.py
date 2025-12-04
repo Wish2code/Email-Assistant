@@ -28,13 +28,13 @@ model = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0)
 
 def read_email(state: EmailState):
     email = state["email"]
-    st.write(f"Alfred is processing an email from {email['sender']} with subject: {email['subject']}")
+    st.write(f"Jack is processing an email from {email['sender']} with subject: {email['subject']}")
     return {}
 
 def classify_email(state: EmailState):
     email = state["email"]
     prompt = f"""
-    As Alfred the butler, analyze this email and determine if it is spam or legitimate.
+    As Jack the butler, analyze this email and determine if it is spam or legitimate.
 
     Email:
     From: {email['sender']}
@@ -79,7 +79,7 @@ def classify_email(state: EmailState):
 
 def handle_spam(state: EmailState):
     
-    st.warning(f"Alfred has marked the email as spam. Reason: {state['spam_reason']}")
+    st.warning(f"Jack has marked the email as spam. Reason: {state['spam_reason']}")
     st.info("The email has been moved to the spam folder.")
     return {}
 
@@ -87,7 +87,7 @@ def draft_response(state: EmailState):
     email = state["email"]
     category = state["email_category"] or "general"
     prompt = f"""
-    As Alfred the butler, draft a polite preliminary response to this email.
+    As Jack the butler, draft a polite preliminary response to this email.
 
     Email:
     From: {email['sender']}
@@ -173,7 +173,7 @@ if st.button("Process Email"):
         "messages": []
     }
     
-    with st.spinner("Alfred is processing your email..."):
+    with st.spinner("Jack is processing your email..."):
         final_state = compiled_graph.invoke(initial_state)
     
     st.subheader("Processing Result")
