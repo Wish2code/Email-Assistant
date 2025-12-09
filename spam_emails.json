@@ -1,0 +1,15 @@
+[
+  {
+    "sender": "john.doe@example.com",
+    "subject": "Important Inquiry",
+    "body": "Dear Mr. Ngaatendwe, I have a question regarding...",
+    "spam_reason": "the email is addressed to \"dear mr. ngaatendwe,\" while i am jack the butler. this indicates the email is either misdirected or, more likely, a mass unsolicited email where the personalization is incorrect, a common characteristic of spam or phishing attempts. it is not a legitimate communication intended for me."
+  },
+  {
+    "sender": "john.doe@example.com",
+    "subject": "Important Inquiry",
+    "body": "Dear Mr. Ngaatendwe, I have a question regarding...",
+    "spam_reason": "the sender's email address, `john.doe@example.com`, is highly suspicious. the domain `example.com` is specifically reserved for use in examples and documentation, not for actual email accounts. no legitimate individual or organization would send an email from this domain. while the personalized salutation \"dear mr. ngaatendwe\" might initially suggest legitimacy, the invalid sender domain unequivocally marks this email as illegitimate and likely spam.",
+    "timestamp": "2025-12-08T18:05:53.586504"
+  }
+]

@@ -4,7 +4,7 @@ An agent that uses **LangGraph**, **LangChain**, and **Google Gemini** to proces
 
 - Reads a user-provided email (sender, subject, body).
 - Uses an LLM to classify the email as **spam** or **legitimate**.
-- If spam, shows the reason and marks it as spam.
+- If spam, shows the reason, marks it as spam, and appends it to `spam_emails.json` (a simple local "spam folder").
 - If legitimate, categorizes it (inquiry, complaint, thank you, request, information).
 - Drafts a polite response for Mr. Ngaatendwe to review.
 - Shows the draft in the UI for further editing.

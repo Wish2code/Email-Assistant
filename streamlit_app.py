@@ -1,5 +1,7 @@
 import streamlit as st
 import os
+import json
+from datetime import datetime
 from dotenv import load_dotenv
 from typing import TypedDict, List, Dict, Any, Optional
 from langgraph.graph import StateGraph, START, END
@@ -78,9 +80,32 @@ def classify_email(state: EmailState):
     }
 
 def handle_spam(state: EmailState):
-    
+    # Persist spam email details to a local JSON "spam folder"
+    spam_entry = {
+        "sender": state["email"]["sender"],
+        "subject": state["email"]["subject"],
+        "body": state["email"]["body"],
+        "spam_reason": state["spam_reason"],
+        "timestamp": datetime.now().isoformat(),
+    }
+
+    spam_file_path = "spam_emails.json"
+
+    try:
+        with open(spam_file_path, "r", encoding="utf-8") as f:
+            existing_spam = json.load(f)
+            if not isinstance(existing_spam, list):
+                existing_spam = []
+    except (FileNotFoundError, json.JSONDecodeError):
+        existing_spam = []
+
+    existing_spam.append(spam_entry)
+
+    with open(spam_file_path, "w", encoding="utf-8") as f:
+        json.dump(existing_spam, f, indent=2, ensure_ascii=False)
+
     st.warning(f"Jack has marked the email as spam. Reason: {state['spam_reason']}")
-    st.info("The email has been moved to the spam folder.")
+    st.info("The email has been moved to the spam folder (saved in 'spam_emails.json').")
     return {}
 
 def draft_response(state: EmailState):
