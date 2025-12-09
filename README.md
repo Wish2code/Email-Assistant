@@ -1,4 +1,4 @@
-# Ngaatendwe's Email Assistant (Alfred)
+# Ngaatendwe's Email Assistant (Jack)
 
 An agent that uses **LangGraph**, **LangChain**, and **Google Gemini** to process incoming emails. The app:
 
@@ -86,7 +86,7 @@ The LangGraph workflow in `streamlit_app.py`:
 
 1. **read_email**
    - Reads the email from the current state.
-   - Displays a message in Streamlit that Alfred is processing the email.
+   - Displays a message in Streamlit that Jack is processing the email.
 
 2. **classify_email**
    - Prompts the Gemini model to:
@@ -148,7 +148,7 @@ The UI in `streamlit_app.py`:
   ```
 
 - **Categories**: modify the list of categories in `classify_email` to support your own taxonomy.
-- **Prompts**: adjust the classification and drafting prompts to change Alfred’s style or behavior.
+- **Prompts**: adjust the classification and drafting prompts to change Jack’s style or behavior.
 - **Spam Logic**: currently, `is_spam` is detected by checking if `"spam"` appears in the response text and `"not spam"` does not. You can replace this with a more structured parsing strategy if desired.
 
 ---
